@@ -67,7 +67,6 @@
   }
   
   .facilities-details-section {
-    padding: 20px;
     background-color: white;
     text-align: center;
     margin-top: 180px;
@@ -101,18 +100,37 @@
     color: #555;
   }
   
+  .luxury-room-text .book-now-btn { 
+    display: flex;
+    background-color: #c79b45;
+    margin-left: 20rem;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    width: 138px;
+    text-align: center;
+  }
+
+  .book-now-btn:hover {
+    background-color: #af8740;
+  }
   .luxury-room-section {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     padding: 30px;
     margin-top: 50px;
     background-color: #f8f8f8;
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+    width: 80%;
+    margin-left: 14rem;
   }
   
   .luxury-room-section:hover {
@@ -183,6 +201,8 @@
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+    width: 80%;
+    margin-left: 14rem;
   }
   
   .gym-section:hover {
@@ -206,6 +226,25 @@
     text-align: left;
     max-width: 500px;
     animation: fadeInRight 1s ease-in-out;
+  }
+
+  .gym-section .book-now-btn-gym {
+    display: flex;
+    background-color: white;
+    margin-left: 20rem;
+    color: #B79347;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    width: 138px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .book-now-btn-gym:hover {
+    background-color: #dddddd;
   }
   
   @keyframes fadeInRight {
@@ -253,7 +292,36 @@
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+    width: 80%;
+    margin-left: 14rem;
   }
+
+  .spa-section .book-now-btn-spa {
+    display: flex;
+    background-color: #c79b45;
+    margin-left: 20rem;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    width: 138px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  display: flex;
+    background-color: #c79b45;
+    margin-left: 20rem;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    width: 138px;
+    text-align: center;
   
   .spa-section:hover {
     transform: translateY(-10px);
@@ -324,6 +392,23 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     margin-bottom: 100px;
+    width: 80%;
+    margin-left: 14rem;
+  }
+
+  .dining-section .book-now-btn-dining {
+    display: flex;
+    background-color: white;
+    margin-left: 20rem;
+    color: #B79347;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    width: 138px;
+    text-align: center;
+    font-size: 1rem;
   }
   
   .dining-section:hover {

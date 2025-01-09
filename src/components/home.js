@@ -15,8 +15,17 @@ function Home() {
     return `${year}-${month}-${day}`;
   };
 
+  const getTomorrowDate = (date) => {
+    const nextDay = new Date(date);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const year = nextDay.getFullYear();
+    const month = String(nextDay.getMonth() + 1).padStart(2, '0');
+    const day = String(nextDay.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [checkIn, setCheckIn] = useState(getTodayDate());
-  const [checkOut, setCheckOut] = useState(getTodayDate());
+  const [checkOut, setCheckOut] = useState(getTomorrowDate(getTodayDate()));
   const [persons, setPersons] = useState(2);
 
   const handleBookNow = () => {
@@ -36,7 +45,16 @@ function Home() {
             <input
               type="date"
               value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
+              min={getTodayDate()} // Set minimum date to today
+              onChange={(e) => {
+                const newCheckIn = e.target.value;
+                setCheckIn(newCheckIn);
+                setCheckOut((prevCheckOut) =>
+                  new Date(newCheckIn) >= new Date(prevCheckOut)
+                    ? getTomorrowDate(newCheckIn)
+                    : prevCheckOut
+                );
+              }}
             />
           </div>
 
@@ -47,6 +65,7 @@ function Home() {
             <input
               type="date"
               value={checkOut}
+              min={getTomorrowDate(checkIn)} // Ensure check-out date is at least one day after the check-in date
               onChange={(e) => setCheckOut(e.target.value)}
             />
           </div>
@@ -59,6 +78,7 @@ function Home() {
               type="number"
               value={persons}
               min="1"
+              max="8"
               onChange={(e) => setPersons(e.target.value)}
             />
           </div>

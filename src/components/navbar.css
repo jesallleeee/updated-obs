@@ -33,9 +33,9 @@
 
   .nav-links {
     display: flex;
-    gap: 60px;
+    gap: 50px;
     list-style: none;
-    flex: 1;
+    margin-left: 33rem;
     justify-content: center;
   }
 

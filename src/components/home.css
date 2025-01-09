@@ -51,7 +51,9 @@
     text-align: left;
     flex: none;
     margin: 10px;
+    margin-top: 65px;
     position: relative;
+    transform: translateY(-30px);
 }
   
 .booking-item::after {
@@ -106,7 +108,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: -10px;
+    margin-left: -40px;
 }
   
 .book-now-btn:hover {
@@ -136,7 +138,7 @@
 .welcomeh {
     color: rgba(183,147,68,1);
     font-family: Raleway;
-    font-weight: SemiBold;
+    font-weight: SemiBold; 
     font-size: 50px;
     opacity: 1;
     text-align: center;

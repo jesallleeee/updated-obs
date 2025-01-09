@@ -34,6 +34,9 @@ const Facilities = () => {
               seeking cozy relaxation or indulgent luxury, we have the ideal space for your stay. Explore 
               our selection and find your home away from home.
             </p>
+            <button className="book-now-btn">
+      Book Now
+    </button>
           </div>
         </div>
 
@@ -45,6 +48,7 @@ const Facilities = () => {
              modern machines and facilities. Whether you're into strength, training, cardio, 
              or yoga. Elysian Gym offers the perfect space to energize your body and mind.
             </p>
+            <button className="book-now-btn-gym">Book Now</button>
           </div>
           <img src={gym} alt="gym" className="gym-image" />
         </div>
@@ -59,6 +63,7 @@ const Facilities = () => {
               in a holistic hourney that rejuvenates your mind, body, and spirit
               leaving you refreshed and renewed.
             </p>
+            <button className="book-now-btn-spa">Book Now</button>
           </div>
         </div>
 
@@ -71,6 +76,7 @@ const Facilities = () => {
              come together for an unforgettable culinary journey. Indulge crafted dishes
              that elevate every moment of your dining experience.
             </p>
+            <button className="book-now-btn-dining">Book Now</button>
           </div>
           <img src={dining} alt="dining" className="dining-image" />
         </div>
