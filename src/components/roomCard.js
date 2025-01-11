@@ -6,7 +6,16 @@ const RoomCard = ({ room, onBook }) => {
     <div className="room-card-select">
       <div className="room-card-image-select">
         <img src={room.image} alt={room.name} />
-      
+          <div className="room-amenities-select">
+          {Array.isArray(room.amenities) && room.amenities.length > 0 &&
+            room.amenities.map((amenity, index) => (
+              <div key={index} className="amenity-item-select">
+                <img src={amenity.icon} alt={amenity.label} />
+                <span>{amenity.label}</span>
+              </div>
+            ))
+          }
+          </div>
       </div>
       <div className="room-card-content-select">
         <div className="room-card-header-select">

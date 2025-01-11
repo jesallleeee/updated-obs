@@ -1,16 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-.selectRoom-container {
+.bookingForm-container {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     animation: fadeIn 0.5s ease-in-out;
-    overflow: hidden; /* Prevents the whole page from scrolling */
-}
-
-.sr-bg {
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  .bf-bg {
     width: 100vw;
     height: 320px;
     background-image: url('../assets/Hbg.jpeg');
@@ -22,17 +19,281 @@
     justify-content: center;
     align-items: center;
     position: relative;
-}
-
-.book-room{
-    width: 100vw;   
-    animation: fadeIn 0.5s ease-in-out;
-    background-image: url('../assets/bg.png'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;     
-    opacity: 0.9;
+  }
+  
+  .details-container-form {
+    width: 100vw;
+    min-height: 110px;
+    background: rgba(255, 255, 255, 1);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-}
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bookingpanel-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+    margin-left: 110px;
+  }
+  
+  .booking-item-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: none;
+    gap: 5px;
+    position: relative;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+  
+  .booking-item-form::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: 50px;
+    background-color: #ccc;
+  }
+  
+  .booking-item-form:last-of-type::after {
+    display: none;
+  }
+  
+  .booking-item-form span {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: -10px;
+  }
+  
+  .booking-item-form span i {
+    font-size: 15px;
+    color: #c79b45;
+  }
+  
+  .booking-item-form input {
+    font-size: 16px;
+    padding: 8px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .book-form {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+  }
+  
+  .form-text {
+    font-family: "Raleway", sans-serif;
+    font-weight: bold; 
+    font-size: 35px;
+    color: #b89445;
+    margin: 30px 0;
+    text-align: center;
+    margin-right: 1100px;
+  }
+
+  .info-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    width: 1000px;
+    height: 400px;
+    margin-left: 230px;
+  }
+
+  .summary-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+  }
+
+  .info-container h3,
+  .summary-container h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    margin-left: 25px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-left: 25px;
+  }
+  
+  .info-container label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .info-container input {
+    width: 430px;
+    height: 20px;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    outline: 0;
+    background: transparent;
+  }
+
+  .info-container label::after {
+    content: " *";
+    color: red;
+  }
+
+  .info-container input:focus,
+  .info-container select:focus {
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid #0084ff;
+    background: transparent;
+  }
+
+  .info-container select {
+    width: 450px;
+    height: 40px;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    outline: 0;
+    background: transparent;
+    border-radius: 8px;
+  }
+
+  .payment-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    width: 1000px;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 230px;
+  }
+
+  .payment-container h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    margin-left: 25px;
+  }
+
+  .payment-method {
+    margin-bottom: 20px;
+  }
+
+  .payment-method-group {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+  }
+
+  .payment-method input[type="radio"] {
+    width: 18px; /* Set the width of the radio button */
+    height: 18px; /* Set the height of the radio button */
+  }
+
+  .payment-method label {
+    font-size: 16px;
+    color: #3B4256;
+    font-weight: 500;
+  }
+  
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 25px;
+  } 
+
+  .payment-grid label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    margin-left: 25px;
+  }
+
+  .payment-grid input,
+  .payment-grid select {
+    width: 420px;
+    height: 20px;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    outline: 0;
+    background: transparent;
+    margin-left: 25px;
+  }
+
+  .payment-grid input:focus,
+  .payment-grid select:focus {
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid #0084ff;
+    background: transparent;
+  }
+
+  .expiration-row {
+    display: flex;
+  }
+  
+  .expiration-row div {
+    flex: 1;
+  }
+  
+  .expiration-row select {
+    padding: 5px;
+    width: 200px;
+    height: 40px;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    outline: 0;
+    background: transparent;
+    border-radius: 8px;
+  }
+
+  .gcash-inputs input {
+    width: 400px;
+    height: 20px;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    outline: 0;
+    background: transparent;
+    margin-left: 35px;
+  }
+
+  .gcash-inputs label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: 35px;
+    margin-top: 10px;
+  }
