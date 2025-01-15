@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './room.css';
 import roomImage from '../assets/hotelroom.jpg';
 import Footer from './footer';
 import { Link } from 'react-scroll';
 
 function Room() {
+  useEffect(() => {
+      window.scrollTo(0, 0); // Scroll to the top when the component is mounted
+    }, []);
+  
   return (
     <div>
 

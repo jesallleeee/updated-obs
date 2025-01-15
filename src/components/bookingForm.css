@@ -100,7 +100,7 @@
     background-color: #f9f9f9;
     overflow-y: auto;
   }
-  
+
   .form-text {
     font-family: "Raleway", sans-serif;
     font-weight: bold; 
@@ -108,8 +108,95 @@
     color: #b89445;
     margin: 30px 0;
     text-align: center;
-    margin-right: 1100px;
+    margin-right: 1080px;
   }
+
+  .row-container {
+    display: flex;
+    position: relative;
+  }
+
+  .booking-card {
+    width: 350px;
+    max-height: 440px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    margin-left: 20px;
+  }
+
+  .room-rate-card{
+    display: flex;
+    align-items: center;
+    gap: 120px; 
+    margin-top: 8px;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+
+  .card-content img {
+    width: 360px;
+    height: 200px;
+    object-fit: cover;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+  
+  .room-title-card {
+    font-size: 20px;
+    font-weight: medium;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .room-price-card {
+    display: flex;
+    font-size: 14px;
+    color: #666;
+    margin: 12px 0;
+  }
+  
+  .room-details-card {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+  
+  .charge-item-card {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .card hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 16px 0;
+  }
+  
+  .total-card {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .subtotal-card {
+    font-size: 12px;
+    color: #888;
+    text-align: right;
+    margin-top: 10px;
+  }  
 
   .info-container {
     background-color: white;
@@ -117,7 +204,7 @@
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     flex: 1;
-    width: 1000px;
+    max-width: 1000px;
     height: 400px;
     margin-left: 230px;
   }
@@ -296,4 +383,72 @@
     display: block;
     margin-left: 35px;
     margin-top: 10px;
+  }
+
+  .request-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    width: 1000px;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 230px;
+  }
+
+  .request-container h3 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    margin-left: 25px;
+  }
+  
+    .rules-container {
+      background-color: transparent;
+      border-radius: 8px;
+      flex: 1;
+      width: 1000px;
+      height: auto;
+      margin-top: 20px;
+      margin-left: 230px;
+    }
+
+    .rules-container h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
+      margin-left: 10px;
+    }
+
+    .rules-container p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #333;
+      margin-left: 10px;
+      text-align: justify;
+    }
+
+  .submit-button {
+    align-self: flex-end;
+    background-color: #B79344;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 1040px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 230px;
+    margin-top: 50px;
+  }
+  
+  .submit-button:hover {
+    background-color: #a87c3c;
+  }
+  
+  .submit-button:focus {
+    outline: none;
   }

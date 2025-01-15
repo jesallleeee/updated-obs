@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./bookingForm.css";
 import Navbar from "./navbar";
+import roomImageCheck from "../assets/roomss.jpg";
 
 const BookingForm = () => {
   const getTodayDate = () => {
@@ -36,8 +37,9 @@ const BookingForm = () => {
   const [checkIn, setCheckIn] = useState(location.state?.checkIn || getTodayDate());
   const [checkOut, setCheckOut] = useState(location.state?.checkOut || getTomorrowDate(getTodayDate()));
   const [persons, setPersons] = useState(location.state?.persons || 2);
-  
-  const [paymentMethod, setPaymentMethod] = React.useState("visa");
+  const [paymentMethod, setPaymentMethod] = useState("visa");
+
+  const { name, price, image, details } = location.state || {};
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -158,6 +160,7 @@ const BookingForm = () => {
         
         <div className="book-form">
           <div className="form-text">Complete Booking</div>
+          <div className="row-container">
           <div className="info-container">
             <h3>Guest Information</h3>
             <div className="form-grid">
@@ -258,10 +261,39 @@ const BookingForm = () => {
               </div>
             </div>
           </div>
+          <div class="booking-card">
+            <div class="card-content">
+              <img src={roomImageCheck} alt="Room Image" />
+              <div className="room-rate-card">
+                <span className="room-title-card">{name || "Standard Room"}</span>
+                <span className="room-price-card">{price || "4500"}</span>
+              </div>
+              <p class="room-details-card">
+                1 Room, 1 Adult, 1 Night Stay<br />
+                Fri, Dec 06, 2024 - Sat, Dec 07, 2024<br />
+              </p>
+              <div class="charges-card">
+                <div class="charge-item-card">
+                  <span>Taxes and Fees</span>
+                  <span>1,500</span>
+                </div>
+                <div class="charge-item-card">
+                  <span>Service Charge</span>
+                  <span>500</span>
+                </div>
+              </div>
+              <hr />
+              <div class="total-card">
+                <span>Total</span>
+                <span>6,500</span>
+              </div>
+              <p class="subtotal-card">PHP Subtotal</p>
+            </div>
+          </div>
+       </div>
 
           <div className="payment-container">
           <h3>Payment</h3>
-
           <div className="payment-method">
             <div className="payment-method-group">
               <input
@@ -281,7 +313,12 @@ const BookingForm = () => {
                   <input 
                     type="text" 
                     name="cardNumber" 
-                    placeholder="XXXX-XXXX-XXXX-XXXX" 
+                    placeholder="XXXX-XXXX-XXXX-XXXX"
+                    maxLength="16"
+                    inputMode="numeric"
+                    pattern="\d*"
+                    onInput={(e) => (e.target.value = e.target.value.replace(/\D/g, ""))}
+                    required
                   />
                 </div>
                 <div className="expiration-row">
@@ -316,7 +353,11 @@ const BookingForm = () => {
                   <input 
                     type="text"
                     name="nameOnCard" 
-                    placeholder="Cardholder Name" 
+                    placeholder="Cardholder Name"
+                    maxLength="50"
+                    pattern="^[a-zA-Z\s]*$" // Allows only alphabets and spaces
+                    onInput={(e) => (e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, ""))}
+                    required
                   />
                 </div>
                 <div>
@@ -324,7 +365,12 @@ const BookingForm = () => {
                   <input 
                     type="text" 
                     name="cvv" 
-                    placeholder="XXX" 
+                    placeholder="XXX"
+                    maxLength="3"
+                    inputMode="numeric"
+                    pattern="\d*"
+                    onInput={(e) => (e.target.value = e.target.value.replace(/\D/g, ""))}
+                    required
                   />
                 </div>
               </div>
@@ -350,7 +396,12 @@ const BookingForm = () => {
                   <input 
                     type="text" 
                     name="gcashNumber" 
-                    placeholder="XXXX-XXX-XXXX" 
+                    placeholder="XXXX-XXX-XXXX"
+                    maxLength="11"
+                    inputMode="numeric"
+                    pattern="\d*"
+                    onInput={(e) => (e.target.value = e.target.value.replace(/\D/g, ""))}
+                    required 
                   />
                 </div>
               </div>
@@ -358,10 +409,27 @@ const BookingForm = () => {
           </div>
         </div>
 
+        <div className="payment-container">
+        <h3>Room Requests and Accessibility</h3>
+        </div>
 
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
+        <div className="rules-container">
+        <h3>Kids Stay Free</h3>
+        <p>A maximum of 2 children aged 12 and below stay free of charge per room if they share the same bed with adults.</p>
+        <h3>Cancellation Policy</h3>
+        <p>Cancellations must be made at least 24 hours before the scheduled check-in time (typically 3:00 PM on the check-in date) 
+          to avoid penalties. If a booking is canceled after the specified cancellation deadline, a cancellation fee will apply. 
+          If the guest does not show up for the reservation and fails to cancel in advance, a no-show fee will be charged, which 
+          may be equivalent to the full cost of the first night’s stay.</p>
+        </div>
+
+        <button 
+          type="submit" 
+          className="submit-button" 
+          onClick={handleSubmit}>
+          Book Now
+        </button>
+
         </div>
       </div>
     </div>

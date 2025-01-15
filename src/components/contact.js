@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-scroll';
 import profile from '../assets/profile.jpg'
 import Footer from './footer';
 import './contact.css';
 
 function Contact() {
+  useEffect(() => {
+      window.scrollTo(0, 0); // Scroll to the top when the component is mounted
+    }, []);
+  
   return (
     <div>
 

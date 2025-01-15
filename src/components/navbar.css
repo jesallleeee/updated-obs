@@ -35,8 +35,10 @@
     display: flex;
     gap: 50px;
     list-style: none;
-    margin-left: 33rem;
     justify-content: center;
+    position: absolute;
+    left: 48.5%;
+    transform: translateX(-50%);
   }
 
   .nav-links a {
@@ -72,7 +74,7 @@
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 10px;
+    border-radius: 32px;
     cursor: pointer;
     font-family: 'Poppins';
     width: 100px;
@@ -99,9 +101,258 @@
   }
 
   .navbar.scrolled .user-icon {
-    color: #B79344;
+    color: #c79b45;
+    margin-top: 8px;
   }
 
   .navbar.scrolled .user-icon:hover {
-    color: #c79b45;
+    color: #af8740;
   }
+
+  .user-menu {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    background-image: url('../assets/userDropdownBG1.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    border-radius: 12px;
+    width: 250px;
+    height: 270px;
+    z-index: 1000;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dropdown-header {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    color: white;
+    padding: 15px;
+    margin-top: 15px;  
+  }
+  
+  .dropdown-subheader {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #e2e2e2;
+    margin-top: -25px;
+  }
+  
+  .dropdown-item {
+    padding: 15px;
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 10px; /* Space between icon and text */
+    cursor: pointer;
+    background-color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    margin: 5px auto;
+    width: 70%; /* Centers the items with equal margins */
+    max-height: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+  .dropdown-item:hover {
+    background-color: #f7f7f7;
+}
+
+  .dropdown-item img.dropdown-icon {
+    width: 35px; /* Set the width of the icon */
+    height: 35px; /* Set the height of the icon */
+    object-fit: cover;
+    align-items: left;
+}
+
+  .dropdown-item span {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+  .dropdown-item:first-child {
+    border-top: none;
+}
+
+  .edit-profile {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    background-image: url('../assets/userDropdownBG1.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    border-radius: 12px;
+    width: 300px;
+    height: 270px;
+    z-index: 1000;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+  .edit-header {
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+    color: white;
+    padding: 15px;
+    margin-top: 15px; 
+}
+
+  .edit-header .back-button {
+    color: #ffffff;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+  .edit-form label {
+    display: block;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+}
+
+  .edit-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+  .save-btn {
+    background-color: #c79b45;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 32px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+}
+
+  .save-btn:hover {
+    background-color: #af8740;
+}
+
+  .my-bookings {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 400px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.my-bookings {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 420px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+
+.my-bookings-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.my-bookings-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.booking-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.booking-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f7f7f7;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+}
+
+.booking-tab.active {
+  background-color: #c79b45;
+  color: white;
+}
+
+.booking-item-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.booking-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.booking-info {
+  flex: 1;
+}
+
+.booking-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.booking-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.booking-status {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.booking-status.to-check-in {
+  color: #c79b45;
+}
+
+.booking-status.completed {
+  color: green;
+}

@@ -147,9 +147,22 @@ const SelectRoom = () => {
     }, 1000);
   }, []);
 
+  // Function to handle room booking
   const handleBookClick = (room) => {
     navigate("/bookingForm", {
-      state: { checkIn, checkOut, persons, room },
+      state: {
+        checkIn,
+        checkOut,
+        persons,
+        room: {
+          id: room.id,
+          name: room.name,
+          price: room.price,
+          bed: room.bed,
+          description: room.description,
+          amenities: room.amenities,
+        },
+      },
     });
   };
 
@@ -223,7 +236,7 @@ const SelectRoom = () => {
             <RoomCard
               key={room.id}
               room={room}
-              onBook={() => handleBookClick(room)}
+              onBook={() => handleBookClick(room)} // Pass room data when booking
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-scroll';
 import './facilities.css';
 import luxuryRoomImage from '../assets/rooms.jpg'; 
@@ -8,9 +8,12 @@ import dining from '../assets/dining.png';
 import Footer from './footer';
 
 const Facilities = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0); // Scroll to the top when the component is mounted
+    }, []);
+  
   return (
     <div>
-
       <div className='facilities-container'>
         <div>
           <h1>Enjoy Our Facilities</h1>
