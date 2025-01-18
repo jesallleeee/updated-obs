@@ -132,11 +132,11 @@
   
   .dropdown-header {
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 18px;
     text-align: center;
     color: white;
     padding: 15px;
-    margin-top: 15px;  
+    margin-top: 20px;  
   }
   
   .dropdown-subheader {
@@ -187,31 +187,37 @@
 
   .edit-profile {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     top: 40px;
     right: 0;
     background-color: white;
     background-image: url('../assets/userDropdownBG1.png'); 
-    background-size: cover; 
-    background-position: center;
+    background-size: contain; 
+    background-position: top;
     background-repeat: no-repeat; 
     border-radius: 12px;
     width: 300px;
-    height: 270px;
+    height: 400px;
     z-index: 1000;
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
 
   .edit-header {
-    font-weight: 500;
-    font-size: 1.2rem;
-    text-align: center;
-    color: white;
-    padding: 15px;
-    margin-top: 15px; 
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center the header text initially */
+    position: relative; /* Allow the back button to be positioned absolutely */
+    width: 100%; /* Make the header span the full width of the container */
+    margin: 25px;
 }
 
   .edit-header .back-button {
+    position: absolute; /* Anchor the button */
+    left: 25px; /* Place it on the left side */
     color: #ffffff;
     background: none;
     border: none;
@@ -219,20 +225,39 @@
     cursor: pointer;
 }
 
+  .edit-header h2 {
+    font-weight: medium;
+    font-size: 18px;
+    color: white;
+    margin: 0; /* Remove default margin for proper centering */
+}
+
   .edit-form label {
-    display: block;
-    margin: 10px 0;
+    display: block; /* Ensures the label is above the input */
+    margin: 10px 0 5px; /* Adds proper spacing between the label and input */
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 500;
     color: #333;
+    margin-top: 15px;
+}
+
+  .edit-form label:first-of-type {
+    color: white; /* Make the 'Name' label white */
+}
+
+  .edit-form {
+    margin-top: -30px;
+    margin-left: 25px;
 }
 
   .edit-form input {
-    width: 100%;
+    width: 85%;
+    height: 20px;
     padding: 8px;
-    margin-top: 5px;
+    margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
   .save-btn {
@@ -242,8 +267,9 @@
     padding: 10px 15px;
     border-radius: 32px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 15px;
+    width: 91%;
+    margin-top: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);   
 }
 
   .save-btn:hover {
@@ -252,107 +278,147 @@
 
   .my-bookings {
     background-color: white;
+    background-image: url('../assets/bookingsBG.png'); 
+    background-size: contain; 
+    background-position: top;
+    background-repeat: no-repeat; 
     padding: 20px;
     border-radius: 12px;
     position: absolute;
     top: 40px;
     right: 0;
-    width: 400px;
+    width: 500px;
+    max-height: 300px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+    display: flex; /* Enable Flexbox */
+    flex-direction: column;
 }
 
-.my-bookings {
-  background-color: white;
-  padding: 20px;
-  border-radius: 12px;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  width: 420px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  font-family: 'Poppins', sans-serif;
+  .bookingsHeaderDiv{
+    background-color: transparent;
+  }
+
+  .bookingsBodyDiv{
+    background-color: transparent;  
+    overflow-y: auto;
+    padding: 5px;
+  }
+
+  .my-bookings-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
 }
 
-.my-bookings-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  .my-bookings-header h2 {
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    margin: 0;
 }
 
-.my-bookings-header h2 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
+  .my-bookings-header .back-button {
+    position: absolute; /* Anchor the button */
+    left: 0px; /* Place it on the left side */
+    color: #ffffff;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.booking-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  .booking-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.booking-tab {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  background-color: #f7f7f7;
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  text-align: center;
+  .booking-tab {
+    width: 25%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.booking-tab.active {
-  background-color: #c79b45;
-  color: white;
+  .booking-tab.active {
+    background-color: #c79b45;
+    color: white;
 }
 
-.booking-item-nav {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
+  .booking-item-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distributes space between items */
+    gap: 15px;
+    padding: 10px 15px; /* Adjusted padding for alignment */
+    height: 60px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    position: relative; /* For positioning children */
 }
 
-.booking-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  object-fit: cover;
+  .booking-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.booking-info {
-  flex: 1;
+  .booking-info {
+    flex: 1;
+    display: flex; /* Enable flexbox for the .booking-info */
+    flex-direction: column;
 }
 
-.booking-info h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: #333;
+  .booking-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
 }
 
-.booking-info p {
-  margin: 5px 0;
-  font-size: 0.9rem;
-  color: #666;
+  .booking-info-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
 }
 
-.booking-status {
-  font-size: 0.9rem;
-  font-weight: bold;
+  .booking-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
 }
 
-.booking-status.to-check-in {
-  color: #c79b45;
+  .booking-status {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c79b45; 
+    margin: 0;
 }
 
-.booking-status.completed {
-  color: green;
+  .booking-status.pending {
+    color: #c79b45;
+}
+
+  .booking-status.completed {
+    color: green;
+}
+
+  .booking-status.cancelled {
+    color: red;
 }

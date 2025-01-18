@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 .homecontainer {
-    width: 100%;
+    width: 10 np0%;
     height: 100vh;
     background-image: url('../assets/Hbg.jpeg'); 
     background-size: cover; 

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./bookingForm.css";
 import Navbar from "./navbar";
 import roomImageCheck from "../assets/roomss.jpg";
+import LogInModal from "./logInModal";
 
 const BookingForm = () => {
   const getTodayDate = () => {
@@ -38,8 +39,13 @@ const BookingForm = () => {
   const [checkOut, setCheckOut] = useState(location.state?.checkOut || getTomorrowDate(getTodayDate()));
   const [persons, setPersons] = useState(location.state?.persons || 2);
   const [paymentMethod, setPaymentMethod] = useState("visa");
+  const [isModalVisible, setModalVisible] = useState(true);
 
   const { name, price, image, details } = location.state || {};
+
+  const closeModal = () => {
+    setModalVisible(false);
+  }; 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -106,6 +112,10 @@ const BookingForm = () => {
   return (
     <div>
       <Navbar />
+      <LogInModal isVisible={isModalVisible} onClose={closeModal}>
+        <h2>Welcome to Our Booking Page!</h2>
+        <p>Please fill out the required fields to complete your booking.</p>
+      </LogInModal>
       <div className="bookingForm-container">
         <div className="bf-bg">
           <div className="details-container-form">
