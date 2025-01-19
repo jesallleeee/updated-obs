@@ -5,10 +5,10 @@ import Footer from './footer';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import featureImage1 from "../assets/featureImage1.png";
 import featureImage2 from "../assets/featureImage2.png";
-import roomsimg1 from "../assets/roomss.jpg";
 import facilitiesImg1 from "../assets/facilitiesImage1.png";
 import facilitiesImg2 from "../assets/facilitiesImage2.png";
 import facilitiesImg3 from "../assets/facilitiesImage3.png";
+import RoomCarousel from './roomCarousel';
 
 function Home() {
   useEffect(() => {
@@ -120,7 +120,7 @@ function Home() {
               <p>
                 From world-class amenities to personalized services, we are dedicated to making your stay extraordinary.
               </p>
-              <button className="feature-btn">I'm Interested</button>
+              <button className="feature-btn" onClick={() => navigate('/selectRoom')}>I'm Interested</button>
             </div>
           </div>
           
@@ -130,7 +130,7 @@ function Home() {
               <p>
                 Whether you're here for a relaxing getaway, a business trip, or a special occasion, Elysian is your ultimate destination for unparalleled hospitality.
               </p>
-              <button className="feature-btn">I'm Interested</button>
+              <button className="feature-btn" onClick={() => navigate('/selectRoom')}>I'm Interested</button>
             </div>
             <div className="feature-image">
             <img src={featureImage2} alt="Featured Image" className="feature-img" />
@@ -147,24 +147,10 @@ function Home() {
               Discover your perfect retreat with our thoughtfully designed rooms, offering elegance, comfort, <br />and modern amenities to suit every traveler's needs.
               </div>
             </div>
-
-            <div className="rooms-cards-sec">
-              <div className="room-card-sec">
-                <img src={roomsimg1} alt="Standard Room" className="room-image-sec" />
-                <h3>Standard Room</h3>
-                <p>A small room for solo travelers with a single bed and basic amenities like a bathroom and Wi-Fi.</p>
-              </div>
-              <div className="room-card-sec">
-                <img src={roomsimg1} alt="Double Room" className="room-image-sec" />
-                <h3>Double Room</h3>
-                <p>A room for two with a double bed or twin beds and standard amenities like a bathroom and TV.</p>
-              </div>
-              <div className="room-card-sec">
-                <img src={roomsimg1} alt="Suite" className="room-image-sec" />
-                <h3>Suite</h3>
-                <p>A spacious room with separate living and sleeping areas, offering premium amenities.</p>
-              </div>
+            <div className="room-carousel-wrapper">
+              <RoomCarousel />
             </div>
+            <hr className="long-divider" />
           </div>
       <div className="facilities-section">
         <div className="facilities-m">

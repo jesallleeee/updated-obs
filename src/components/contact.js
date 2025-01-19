@@ -23,52 +23,51 @@ function Contact() {
     </div>
 
     <div className='message-review'>
-      <div className='message'>
-      <h2>Message Us</h2>
-      <form className="contact-form">
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="fullname">Full Name</label>
-              <input type="text" id="fullname" name="fullname" placeholder="e.g. John Becker" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="johnbecker@gmail.com" required />
-            </div>
-          </div>
-          <div className="form-group message-group">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" placeholder="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" className="submit-btn">Send Message</button>
-        </form>
+    <div className='contact-home-header'>
+      <h2>Get In Touch With Us</h2>
+      <p>We're here to help you with any questions or requests. Reach out to us today!</p>
+    </div>
+    <form className="contact-form">
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="fullname">Full Name</label>
+          <input 
+            type="text" 
+            id="fullname" 
+            name="fullname" 
+            placeholder="e.g. John Becker" 
+            required 
+            pattern="[A-Za-z\s]+" // Allows only letters and spaces
+            title="Only alphabetic characters and spaces are allowed" // Error message
+            aria-label="Full Name"
+          />
         </div>
-
-      <div className='review'>
-        <h2>What Customers Say About Us</h2>
-        <div className="testimonials-container">
-          <div className="testimonial-card">
-            <img src={profile} alt="Customer 1" className="testimonial-image" />
-            <h4>Fatima Taylor</h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
-          </div>
-          <div className="testimonial-card">
-            <img src={profile} alt="Customer 2" className="testimonial-image" />
-            <h4>Fatima Taylor</h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
-          </div>
-          <div className="testimonial-card">
-            <img src={profile} alt="Customer 3" className="testimonial-image" />
-            <h4>Fatima Taylor</h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
-          </div>
-        </div>
-        <div className="carousel-indicators">
-          <span className="indicator active"></span>
-          <span className="indicator"></span>
-          <span className="indicator"></span>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="johnbecker@gmail.com" 
+            required 
+            aria-label="Email Address"
+          />
         </div>
       </div>
+      <div className="form-group message-group">
+        <label htmlFor="message">Message</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          placeholder="Your message here" 
+          rows="5" 
+          required 
+          aria-label="Message"
+        ></textarea>
+      </div>
+      <button type="submit" className="submit-btn">Send Message</button>
+    </form>
+
     </div>
 
     <Footer />

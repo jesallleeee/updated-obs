@@ -5,15 +5,22 @@ import elysianLogo from '../assets/elysianwhite.png';
 import elysianLogoScrolled from '../assets/elysiangold.png';
 import userIconImg from '../assets/userIcon.png';
 import bookingsIconImg from '../assets/bookingsIcon.png';
+import loginIconImg from '../assets/loginIcon.png';
 import logoutIconImg from '../assets/logoutIcon.png';
+import signupIconImg from '../assets/signupIcon.png';
 import bookingsImage1 from "../assets/roomss.jpg";
+import LogInModal from "./logInModal";
+import SignupModal from './signUpModal';
 import './navbar.css';
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownView, setDropdownView] = useState('menu');
+  const [isLogInModalVisible, setIsLogInModalVisible] = useState(false);
+  const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("bookings");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -60,6 +67,22 @@ function Navbar() {
     }
   };
 
+  const closeLogInModal = () => {
+    setIsLogInModalVisible(false); // Hide the login modal
+    setIsLoggedIn(true); // Simulate logging in for demo purposes /////////////////////////////
+  };
+
+  const closeSignupModal = () => {
+    setIsSignupModalVisible(false);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Simulate logging out for demo purposes
+    setIsDropdownOpen(false); // Close the dropdown
+  };
+
+  const userMenuClass = isDropdownOpen ? 'active' : '';
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="logo">
@@ -100,157 +123,178 @@ function Navbar() {
       </ul>
       <div className="navbar-actions">
         <button className="book-btn" onClick={() => navigate('/selectRoom')}>Book now</button>
-        <div className="user-menu" ref={dropdownRef}>
+        <div className={`user-menu ${userMenuClass}`} ref={dropdownRef}>
           <FaUserCircle className="user-icon" size={30} onClick={toggleDropdown} />
-          {isDropdownOpen && (
-            dropdownView === 'menu' ? (
+            {isDropdownOpen && (
+              isLoggedIn ? (
+                dropdownView === 'menu' ? (
+                  <div className="dropdown-menu">
+                    <p className="dropdown-header">Limuel Alcovendas</p>
+                    <div className="dropdown-item" onClick={() => setDropdownView('editProfile')}>
+                      <img src={userIconImg} alt="Edit Profile" className="dropdown-icon" />
+                      <span>Edit Profile</span>
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleOptionClick('/bookings')}>
+                      <img src={bookingsIconImg} alt="My Bookings" className="dropdown-icon" />
+                      <span>Bookings</span>
+                    </div>
+                    <div className="dropdown-item" onClick={handleLogout}>
+                      <img src={logoutIconImg} alt="Log out" className="dropdown-icon" />
+                      <span>Log out</span>
+                    </div>
+                  </div>
+                ) : dropdownView === 'editProfile' ? (
+                  <div className="edit-profile">
+                    <div className="edit-header">
+                      <button className="back-button" onClick={() => setDropdownView('menu')}>←</button>
+                      <h2>Edit Profile</h2>
+                    </div>
+                    <form className="edit-form">
+                      <label>
+                        Name
+                      </label>
+                      <input type="text" defaultValue="Limuel Alcovendas" />
+
+                      <label>
+                        Email address
+                      </label>
+                      <input type="email" defaultValue="limuelalco5@gmail.com" />
+
+                      <label>
+                        Password
+                      </label>
+                      <input type="password" defaultValue="*********" />
+
+                      <button type="submit" className="save-btn">Save Changes</button>
+                    </form>
+                  </div>
+                ) : (
+                  <div className="my-bookings">
+                    <div className="bookingsHeaderDiv">
+                      <div className="my-bookings-header">
+                        <button className="back-button" onClick={() => setDropdownView("menu")}>
+                          ←
+                        </button>
+                        <h2>My Bookings</h2>
+                      </div>
+
+                      <div className="booking-tabs">
+                        <button
+                          className={`booking-tab ${activeTab === "bookings" ? "active" : ""}`}
+                          onClick={() => setActiveTab("bookings")}
+                        >
+                          Bookings
+                        </button>
+                        <button
+                          className={`booking-tab ${activeTab === "cancelled" ? "active" : ""}`}
+                          onClick={() => setActiveTab("cancelled")}
+                        >
+                          Cancelled
+                        </button>
+                      </div>
+                      </div>
+
+                      <div className="bookingsBodyDiv">
+                      {/* Render content based on activeTab */}
+                      {activeTab === "bookings" && (
+                        <>
+                          <div className="booking-item-nav">
+                            <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
+                            <div className="booking-info">
+                              <h3>Standard Room</h3>
+                              <div className="booking-info-details">
+                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
+                                  <p className="booking-status pending">Pending</p>
+                              </div>
+                            </div>  
+                          </div>
+
+                          <div className="booking-item-nav">
+                            <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
+                            <div className="booking-info">
+                              <h3>Standard Room</h3>
+                              <div className="booking-info-details">
+                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
+                                  <p className="booking-status completed">Completed</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="booking-item-nav">
+                            <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
+                            <div className="booking-info">
+                              <h3>Standard Room</h3>
+                              <div className="booking-info-details">
+                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
+                                  <p className="booking-status completed">Completed</p>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      )} 
+                      {activeTab === "cancelled" && (
+                        <>
+                          <div className="booking-item-nav">
+                            <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
+                            <div className="booking-info">
+                              <h3>Standard Room</h3>
+                              <div className="booking-info-details">
+                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
+                                  <p className="booking-status cancelled">Cancelled</p>
+                              </div>
+                            </div>  
+                          </div>
+
+                          <div className="booking-item-nav">
+                            <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
+                            <div className="booking-info">
+                              <h3>Standard Room</h3>
+                              <div className="booking-info-details">
+                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
+                                  <p className="booking-status cancelled">Cancelled</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="booking-item-nav">
+                            <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
+                            <div className="booking-info">
+                              <h3>Standard Room</h3>
+                              <div className="booking-info-details">
+                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
+                                  <p className="booking-status cancelled">Cancelled</p>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )
+              ) : (
               <div className="dropdown-menu">
-                <p className="dropdown-header">Limuel Alcovendas</p>
-                <div className="dropdown-item" onClick={() => setDropdownView('editProfile')}>
-                  <img src={userIconImg} alt="Edit Profile" className="dropdown-icon" />
-                  <span>Edit Profile</span>
-                </div>
-                <div className="dropdown-item" onClick={() => handleOptionClick('/bookings')}>
-                  <img src={bookingsIconImg} alt="My Bookings" className="dropdown-icon" />
-                  <span>Bookings</span>
-                </div>
-                <div className="dropdown-item" onClick={() => handleOptionClick('/')}>
-                  <img src={logoutIconImg} alt="Log out" className="dropdown-icon" />
-                  <span>Log out</span>
-                </div>
-              </div>
-            ) : dropdownView === 'editProfile' ? (
-              <div className="edit-profile">
-                <div className="edit-header">
-                  <button className="back-button" onClick={() => setDropdownView('menu')}>←</button>
-                  <h2>Edit Profile</h2>
-                </div>
-                <form className="edit-form">
-          `        <label>
-                      Name
-                  </label>
-                  <input type="text" defaultValue="Limuel Alcovendas" />
-
-                  <label>
-                      Email address
-                  </label>
-                  <input type="email" defaultValue="limuelalco5@gmail.com" />
-
-                  <label>
-                      Password
-                  </label>
-                  <input type="password" defaultValue="*********" />
-
-                  <button type="submit" className="save-btn">Save Changes</button>
-              </form>`
-              </div>
-            ) : (
-              <div className="my-bookings">
-              <div className="bookingsHeaderDiv">
-              <div className="my-bookings-header">
-                <button className="back-button" onClick={() => setDropdownView("menu")}>
-                  ←
-                </button>
-                <h2>My Bookings</h2>
-              </div>
-
-              <div className="booking-tabs">
-                <button
-                  className={`booking-tab ${activeTab === "bookings" ? "active" : ""}`}
-                  onClick={() => setActiveTab("bookings")}
+                <p className="dropdown-header">Guest</p>
+                <div
+                  className="dropdown-item"
+                  onClick={() => setIsLogInModalVisible(true)} // Show LogInModal on click
                 >
-                  Bookings
-                </button>
-                <button
-                  className={`booking-tab ${activeTab === "cancelled" ? "active" : ""}`}
-                  onClick={() => setActiveTab("cancelled")}
+                  <img src={loginIconImg} alt="Log in" className="dropdown-icon" />
+                  <span>Log in</span>
+                </div>
+                <div
+                  className="dropdown-item"
+                  onClick={() => setIsSignupModalVisible(true)} // Show SignupModal on click
                 >
-                  Cancelled
-                </button>
+                  <img src={signupIconImg} alt="Sign up" className="dropdown-icon" />
+                  <span>Sign up</span>
+                </div>
               </div>
-              </div>
-
-              <div className="bookingsBodyDiv">
-              {/* Render content based on activeTab */}
-              {activeTab === "bookings" && (
-                <>
-                  <div className="booking-item-nav">
-                    <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
-                    <div className="booking-info">
-                      <h3>Standard Room</h3>
-                      <div className="booking-info-details">
-                          <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                          <p className="booking-status pending">Pending</p>
-                      </div>
-                    </div>  
-                  </div>
-
-                  <div className="booking-item-nav">
-                    <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
-                    <div className="booking-info">
-                      <h3>Standard Room</h3>
-                      <div className="booking-info-details">
-                          <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                          <p className="booking-status completed">Completed</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="booking-item-nav">
-                    <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
-                    <div className="booking-info">
-                      <h3>Standard Room</h3>
-                      <div className="booking-info-details">
-                          <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                          <p className="booking-status completed">Completed</p>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )} 
-              {activeTab === "cancelled" && (
-                <>
-                  <div className="booking-item-nav">
-                    <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
-                    <div className="booking-info">
-                      <h3>Standard Room</h3>
-                      <div className="booking-info-details">
-                          <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                          <p className="booking-status cancelled">Cancelled</p>
-                      </div>
-                    </div>  
-                  </div>
-
-                  <div className="booking-item-nav">
-                    <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
-                    <div className="booking-info">
-                      <h3>Standard Room</h3>
-                      <div className="booking-info-details">
-                          <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                          <p className="booking-status cancelled">Cancelled</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="booking-item-nav">
-                    <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
-                    <div className="booking-info">
-                      <h3>Standard Room</h3>
-                      <div className="booking-info-details">
-                          <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                          <p className="booking-status cancelled">Cancelled</p>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-              
-            </div>
             )
           )}
         </div>
       </div>
+      <LogInModal isVisible={isLogInModalVisible} onClose={closeLogInModal} />
+      <SignupModal isVisible={isSignupModalVisible} onClose={closeSignupModal} />
     </nav>
   );
 }

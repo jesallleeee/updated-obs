@@ -112,6 +112,10 @@
   .user-menu {
     position: relative;
   }
+
+  .user-menu.active .user-icon {
+  color: #7C6A46; /* Changes color when dropdown is open */
+}
   
   .dropdown-menu {
     position: absolute;
@@ -120,14 +124,15 @@
     background-color: white;
     background-image: url('../assets/userDropdownBG1.png'); 
     background-size: cover; 
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat; 
     border-radius: 12px;
     width: 250px;
-    height: 270px;
+    max-height: 270px;
     z-index: 1000;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    padding-bottom: 20px;
   }
   
   .dropdown-header {

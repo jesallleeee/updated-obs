@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 .homecontainer {
-    width: 10 np0%;
+    width: 100%;
     height: 100vh;
     background-image: url('../assets/Hbg.jpeg'); 
     background-size: cover; 
@@ -176,6 +176,7 @@
     background-color: transparent;
     border-radius: 8px;
     margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   .feature:nth-child(even) {
@@ -188,7 +189,7 @@
   
   .feature-img {
     width: 100%;
-    height: 220px;
+    height: 200px;
     background-size: cover; 
     background-position: bottom; 
     background-repeat: no-repeat; 
@@ -199,6 +200,7 @@
   .feature-content {
     flex: 1;
     padding: 1rem;
+    position: relative;
     margin-left: 20px;
     margin-top: -20px;
   }
@@ -217,7 +219,10 @@
   
   .feature-btn {
     padding: 0.5rem 1rem;
+    position: relative;
     background-color: #c79b45;
+    position: relative;
+    z-index: 1;
     color: white;
     font-family: Poppins;
     font-weight: 500;
@@ -231,6 +236,28 @@
     background-color: #af8740;
   }  
 
+  .feature-content::before {
+    content: '';
+    position: absolute;
+    top: 84%; /* Position the line centered with the button */
+    left: -20px;
+    right: 0;
+    height: 1px; /* Thickness of the line */
+    width: 740px;
+    background-color: #000000; /* Line color matching the button */
+    opacity: 0.7;
+    z-index: 0; /* Ensure the line is below the content */
+  }
+
+  .feature:nth-child(2) .feature-content::before {
+    background-color: #000000; /* Different color for the second line */
+    opacity: 0.7;
+    height: 1px; /* Thicker line for the second one */
+    left: -220px;
+    width: 735px;
+    top: 85%; /* Slightly lower the line */
+  }
+  
 .rooms-section{
     width: 100%;
     height: 100vh;
@@ -305,17 +332,21 @@
   object-fit: cover;
 }
 
-.room-card-sec h3 {
-  font-size: 20px;
-  color: #333;
+.long-divider {
+  border: none;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.9); /* or any color you prefer */
+  width: 100%;
+  margin-top: -171px; /* Adjust as necessary */
+  position: relative;
+  z-index: 1; /* Ensure this has a lower z-index than the RoomCarousel */
 }
 
-.room-card-sec p {
-  font-size: 15px;
-  color: #555;
-  font-family: Raleway;
-  font-weight: normal; 
+.room-carousel-wrapper {
+  position: relative;
+  z-index: 2; /* RoomCarousel above the horizontal line */
 }
+
 
 .facilities-section{
     width: 100%;
@@ -371,6 +402,7 @@
 }
 
 .facility-image-home {
-  width: 500px;
+  width: 450px;
+  margin-top: 35px;
   height: auto;
 }

@@ -1,0 +1,116 @@
+ .selectfacility-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.5s ease-in-out;
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  .sf-bg-select {
+    width: 100vw;
+    height: 320px;
+    background-image: url('../assets/Hbg.jpeg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;     
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .details-container-select-faci {
+    width: 100vw;
+    min-height: 110px;
+    background: rgba(255, 255, 255, 1);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bookingpanel-select-faci {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+    margin-left: 110px;
+  }
+  
+  .booking-item-select-faci {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: none;
+    gap: 5px;
+    position: relative;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+  
+  .booking-item-select-faci::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: 50px;
+    background-color: #ccc;
+  }
+  
+  .booking-item-select-faci:last-of-type::after {
+    display: none;
+  }
+  
+  .booking-item-select-faci span {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: -10px;
+  }
+  
+  .booking-item-select-faci span i {
+    font-size: 15px;
+    color: #c79b45;
+  }
+  
+  .booking-item-select-faci input {
+    font-size: 16px;
+    padding: 8px;
+    width: 200px;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none;
+    color: #555;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .book-room-select-faci {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+  }
+  
+  .select-text-faci {
+    font-family: "Raleway", sans-serif;
+    font-weight: bold; 
+    font-size: 35px;
+    color: #b89445;
+    margin: 30px 0;
+    text-align: center;
+    margin-right: 1100px;
+  }
