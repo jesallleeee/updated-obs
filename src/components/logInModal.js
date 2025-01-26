@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./logInModal.css";
 import SignupModal from "./signUpModal";
+import ForgotPasswordModal from "./forgotpasswordModal";
 
 const LogInModal = ({ isVisible, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -8,6 +9,7 @@ const LogInModal = ({ isVisible, onClose }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSignUpVisible, setIsSignUpVisible] = useState(false);
+  const [isForgotPasswordVisible, setIsForgotPasswordVisible] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +35,14 @@ const LogInModal = ({ isVisible, onClose }) => {
 
   const handleSignUpClose = () => {
     setIsSignUpVisible(false);
+  };
+
+  const handleForgotPasswordClick = () => {
+    setIsForgotPasswordVisible(true); // Open Forgot Password modal
+  };
+
+  const handleForgotPasswordClose = () => {
+    setIsForgotPasswordVisible(false); // Close Forgot Password modal
   };
 
   if (!isVisible) return null;
@@ -83,7 +93,15 @@ const LogInModal = ({ isVisible, onClose }) => {
                 />
               </button>
             </div>
-            <a href="#" className="forgot-password">Forgot Password?</a>
+            <a
+              href="#"
+              className="forgot-password"
+              onClick={(e) => {
+                e.preventDefault();
+                handleForgotPasswordClick();
+              }}
+            >
+            Forgot Password?</a>
             <button type="submit" className="login-button">Login</button>
           </form>
         </div>
@@ -104,8 +122,11 @@ const LogInModal = ({ isVisible, onClose }) => {
         </div>
       </div>
       <SignupModal isVisible={isSignUpVisible} onClose={handleSignUpClose} />
+      <ForgotPasswordModal
+        isVisible={isForgotPasswordVisible}
+        onClose={handleForgotPasswordClose}
+      />
     </div>
-    
   );
 };
 

@@ -2,7 +2,7 @@
     border-radius: 12px;
     overflow: hidden;
     width: 300px;
-    height: 335px;
+    height: 300px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
@@ -23,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
-    margin-top: -5px;
+    margin-top: 0px;
   }
 
   .room-title-tab {
@@ -45,8 +45,8 @@
   .room-info-tab {
     font-size: 14px;
     color: #666;
-    margin-bottom: 16px;
-    margin-top: -5px;
+    margin-bottom: 15px;
+    margin-top: 10px;
   }
   
   .divider-tab {

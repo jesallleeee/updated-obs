@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import RoomDetailsModal from "./roomDetailsModal"; // Import the modal
 import "./roomCard.css";
 
 const RoomCard = ({ room, onBook }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="room-card-select">
       <div className="room-card-image-select">
         <img src={room.image} alt={room.name} />
-          <div className="room-amenities-select">
+        <div className="room-amenities-select">
           {Array.isArray(room.amenities) && room.amenities.length > 0 &&
             room.amenities.map((amenity, index) => (
               <div key={index} className="amenity-item-select">
@@ -15,12 +21,14 @@ const RoomCard = ({ room, onBook }) => {
               </div>
             ))
           }
-          </div>
+        </div>
       </div>
       <div className="room-card-content-select">
         <div className="room-card-header-select">
           <h3>{room.name}</h3>
-          <span className="room-details-link-select">Room Details</span>
+          <span className="room-details-link-select" onClick={openModal}>
+            Room Details
+          </span>
         </div>
         <div className="room-details-summary-select">
           <span className="room-availability-select">{room.availability}</span> · 
@@ -39,9 +47,11 @@ const RoomCard = ({ room, onBook }) => {
           <button className="book-button-select" onClick={onBook}>Book</button>
         </div>
       </div>
+
+      {/* Room Details Modal */}
+      {isModalOpen && <RoomDetailsModal room={room} onClose={closeModal} />}
     </div>
   );
 };
 
 export default RoomCard;
-                            

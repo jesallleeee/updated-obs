@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './room.css';
-import roomImage from '../assets/hotelroom.jpg';
 import Footer from './footer';
 import { Link } from 'react-scroll';
 import RoomTab from './roomTab'; //
@@ -11,12 +10,12 @@ function Room() {
     }, []);
 
     const roomDetails = [
-      { title: 'Standard Room', price: '3000', roomsAvailable: 3, bedCount: 1 },
-      { title: 'Deluxe Room', price: '5000', roomsAvailable: 2, bedCount: 1 },
-      { title: 'Suite', price: '7000', roomsAvailable: 1, bedCount: 2 },
-      { title: 'Standard Room', price: '3000', roomsAvailable: 3, bedCount: 1 },
-      { title: 'Deluxe Room', price: '5000', roomsAvailable: 2, bedCount: 1 },
-      { title: 'Suite', price: '7000', roomsAvailable: 1, bedCount: 2 },
+      { title: 'Standard Room', price: '4,500', roomsAvailable: 3, bedCount: '1 Queen' },
+      { title: 'Deluxe Room', price: '6,500', roomsAvailable: 2, bedCount: '1 King' },
+      { title: 'Executive Suite', price: '12,000', roomsAvailable: 1, bedCount: '1 King, 1 Sofa' },
+      { title: 'Family Room', price: '8,000', roomsAvailable: 3, bedCount: '2 Queen' },
+      { title: 'Penthouse Suite', price: '25,000', roomsAvailable: 2, bedCount: '2 King' },
+      { title: 'Single Room', price: '3,000', roomsAvailable: 1, bedCount: "1 Single" },
     ];
   
   return (

@@ -42,6 +42,11 @@ const BookingForm = () => {
   const [isModalVisible, setModalVisible] = useState(true);
 
   const { name, price, image, details } = location.state || {};
+  const { roomOrFacility } = location.state || {};
+
+  if (!roomOrFacility) {
+    return;
+  }
 
   const closeModal = () => {
     setModalVisible(false);
@@ -173,6 +178,7 @@ const BookingForm = () => {
           <div className="row-container">
           <div className="info-container">
             <h3>Guest Information</h3>
+            <p>Please fill us these Information to finish booking</p>
             <div className="form-grid">
               <div>
                 <label>First Name</label>
@@ -222,65 +228,21 @@ const BookingForm = () => {
                   required
                 />
               </div>
-              <div>
-                <label>Country</label>
-                <select name="country" value={guestInfo.country} onChange={handleInputChange} required>
-                  <option value="">Select Country</option>
-                  {["Philippines", "USA", "Canada"].map((country, index) => (
-                    <option key={index} value={country}>
-                      {country}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label>Address</label>
-                <input
-                  type="text"
-                  name="address"
-                  value={guestInfo.address}
-                  onChange={handleInputChange}
-                  placeholder="Address"
-                  maxLength="200"
-                  required
-                />
-              </div>
-              <div>
-                <label>City</label>
-                <input
-                  type="text"
-                  name="city"
-                  value={guestInfo.city}
-                  onChange={handleInputChange}
-                  placeholder="City"
-                  maxLength="100"
-                  required
-                />
-              </div>
-              <div>
-                <label>Zip Code</label>
-                <input
-                  type="text"
-                  name="zipCode"
-                  value={guestInfo.zipCode}
-                  onChange={handleInputChange}
-                  placeholder="XXXX"
-                  maxLength="5"
-                  required
-                />
-              </div>
             </div>
           </div>
           <div class="booking-card">
             <div class="card-content">
-              <img src={roomImageCheck} alt="Room Image" />
+              <img
+                src={roomOrFacility.image}
+                alt={roomOrFacility.name}
+                className="booking-image"
+              />
               <div className="room-rate-card">
-                <span className="room-title-card">{name || "Standard Room"}</span>
-                <span className="room-price-card">{price || "4500"}</span>
+                <span className="room-title-card">{roomOrFacility.name}</span>
+                <span className="room-price-card">{roomOrFacility.price} PHP</span>
               </div>
               <p class="room-details-card">
-                1 Room, 1 Adult, 1 Night Stay<br />
-                Fri, Dec 06, 2024 - Sat, Dec 07, 2024<br />
+                {checkIn} - {checkOut}<br />{persons} persons
               </p>
               <div class="charges-card">
                 <div class="charge-item-card">
@@ -417,10 +379,6 @@ const BookingForm = () => {
               </div>
             )}
           </div>
-        </div>
-
-        <div className="payment-container">
-        <h3>Room Requests and Accessibility</h3>
         </div>
 
         <div className="rules-container">

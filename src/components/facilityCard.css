@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+.facility-card-select {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1300px;
+  height: 250px;
+  gap: 20px;
+}
+
+.facility-card-image-select img {
+  width: 400px;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.facility-card-image-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.facility-card-content-select {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.facility-card-header-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.facility-card-header-select h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+}
+
+  .facility-details-summary-select {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: -0px;
+  }
+  
+  .facility-availability-select {
+    color: rgb(0, 17, 255);
+  }
+  
+  .facility-description-select {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 5px;
+  }
+  
+  .horizontal-line-select-faci {
+    border-top: 2px solid #d3d3d3; /* Light gray horizontal line */
+    margin-top: -5px;
+  }
+  
+  .facility-card-footer-select {
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
+    gap: 10px; /* Add space between the rate and the button */
+    margin-top: auto; /* Push the footer to the bottom */
+  }
+  
+  .facility-rate-select {
+    display: flex;
+    align-items: center;
+    gap: 560px; /* Adds spacing between the title and the price */
+    margin-top: -90px;
+    margin-bottom: 10px;
+  }
+  
+  .facility-title-select {
+    font-size: 16px;
+    font-weight: medium;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .facility-price-select {
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+  }
+  
+  .facility-price-select small {
+    font-size: 14px; /* Smaller font size for "PHP / NIGHT" */
+    font-weight: medium;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .book-button-select-faci {
+    align-self: flex-end;
+    background-color: #B79344;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+    margin-top: 0px;
+  }
+  
+  .book-button-select-faci:hover {
+    background-color: #a87c3c;
+    transform: scale(1.05);
+  }
+  
+  .book-button-select-faci:focus {
+    outline: none;
+  }
+  

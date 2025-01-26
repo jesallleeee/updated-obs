@@ -21,6 +21,7 @@ function Navbar() {
   const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("bookings");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [sortOrder, setSortOrder] = useState('asc');
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -83,6 +84,48 @@ function Navbar() {
 
   const userMenuClass = isDropdownOpen ? 'active' : '';
 
+  // Static data for bookings (this would be replaced with dynamic fetching later)
+  const bookings = [
+    { id: 1, roomType: 'Standard Room', startDate: 'Fri, Dec 06, 2024', endDate: 'Sat, Dec 07, 2024', status: 'Pending', image: bookingsImage1 },
+    { id: 2, roomType: 'Standard Room', startDate: 'Fri, Dec 08, 2024', endDate: 'Sat, Dec 09, 2024', status: 'Completed', image: bookingsImage1 },
+    { id: 3, roomType: 'Standard Room', startDate: 'Fri, Dec 10, 2024', endDate: 'Sat, Dec 11, 2024', status: 'Completed', image: bookingsImage1 },
+    { id: 4, roomType: 'Standard Room', startDate: 'Fri, Dec 12, 2024', endDate: 'Sat, Dec 13, 2024', status: 'Cancelled', image: bookingsImage1 },
+    { id: 5, roomType: 'Standard Room', startDate: 'Fri, Dec 14, 2024', endDate: 'Sat, Dec 15, 2024', status: 'Cancelled', image: bookingsImage1 },
+    { id: 6, roomType: 'Standard Room', startDate: 'Fri, Dec 16, 2024', endDate: 'Sat, Dec 17, 2024', status: 'Cancelled', image: bookingsImage1 },
+    { id: 7, roomType: 'Deluxe Room', startDate: 'Fri, Dec 18, 2024', endDate: 'Sat, Dec 19, 2024', status: 'Completed', image: bookingsImage1 },
+  ];
+
+   // Sorting function
+   const sortBookings = (bookings) => {
+    return bookings.sort((a, b) => {
+      const dateA = new Date(a.startDate);
+      const dateB = new Date(b.startDate);
+      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+  };
+
+  // Filter bookings by status and sort them
+  const filterBookings = (status) => {
+    return sortBookings(bookings.filter(booking => booking.status === status));
+  };
+
+  const renderBookingItem = (booking) => (
+    <div className="booking-item-nav" key={booking.id}>
+      <img src={booking.image} alt="Booked Room" className="booking-image" />
+      <div className="booking-info">
+        <h3>{booking.roomType}</h3>
+        <div className="booking-info-details">
+          <p>{`${booking.startDate} - ${booking.endDate}`}</p>
+          <p className={`booking-status ${booking.status.toLowerCase()}`}>{booking.status}</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const toggleSortOrder = () => {
+    setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc')); // Toggle between 'asc' and 'desc'
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="logo">
@@ -130,10 +173,6 @@ function Navbar() {
                 dropdownView === 'menu' ? (
                   <div className="dropdown-menu">
                     <p className="dropdown-header">Limuel Alcovendas</p>
-                    <div className="dropdown-item" onClick={() => setDropdownView('editProfile')}>
-                      <img src={userIconImg} alt="Edit Profile" className="dropdown-icon" />
-                      <span>Edit Profile</span>
-                    </div>
                     <div className="dropdown-item" onClick={() => handleOptionClick('/bookings')}>
                       <img src={bookingsIconImg} alt="My Bookings" className="dropdown-icon" />
                       <span>Bookings</span>
@@ -149,24 +188,6 @@ function Navbar() {
                       <button className="back-button" onClick={() => setDropdownView('menu')}>←</button>
                       <h2>Edit Profile</h2>
                     </div>
-                    <form className="edit-form">
-                      <label>
-                        Name
-                      </label>
-                      <input type="text" defaultValue="Limuel Alcovendas" />
-
-                      <label>
-                        Email address
-                      </label>
-                      <input type="email" defaultValue="limuelalco5@gmail.com" />
-
-                      <label>
-                        Password
-                      </label>
-                      <input type="password" defaultValue="*********" />
-
-                      <button type="submit" className="save-btn">Save Changes</button>
-                    </form>
                   </div>
                 ) : (
                   <div className="my-bookings">
@@ -192,83 +213,18 @@ function Navbar() {
                           Cancelled
                         </button>
                       </div>
-                      </div>
-
-                      <div className="bookingsBodyDiv">
-                      {/* Render content based on activeTab */}
-                      {activeTab === "bookings" && (
-                        <>
-                          <div className="booking-item-nav">
-                            <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
-                            <div className="booking-info">
-                              <h3>Standard Room</h3>
-                              <div className="booking-info-details">
-                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                                  <p className="booking-status pending">Pending</p>
-                              </div>
-                            </div>  
-                          </div>
-
-                          <div className="booking-item-nav">
-                            <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
-                            <div className="booking-info">
-                              <h3>Standard Room</h3>
-                              <div className="booking-info-details">
-                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                                  <p className="booking-status completed">Completed</p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="booking-item-nav">
-                            <img src={bookingsImage1} alt="Booked Room" className="booking-image" />
-                            <div className="booking-info">
-                              <h3>Standard Room</h3>
-                              <div className="booking-info-details">
-                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                                  <p className="booking-status completed">Completed</p>
-                              </div>
-                            </div>
-                          </div>
-                        </>
-                      )} 
-                      {activeTab === "cancelled" && (
-                        <>
-                          <div className="booking-item-nav">
-                            <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
-                            <div className="booking-info">
-                              <h3>Standard Room</h3>
-                              <div className="booking-info-details">
-                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                                  <p className="booking-status cancelled">Cancelled</p>
-                              </div>
-                            </div>  
-                          </div>
-
-                          <div className="booking-item-nav">
-                            <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
-                            <div className="booking-info">
-                              <h3>Standard Room</h3>
-                              <div className="booking-info-details">
-                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                                  <p className="booking-status cancelled">Cancelled</p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="booking-item-nav">
-                            <img src={bookingsImage1} alt="Cancelled Room" className="booking-image" />
-                            <div className="booking-info">
-                              <h3>Standard Room</h3>
-                              <div className="booking-info-details">
-                                  <p>Fri, Dec 06, 2024 - Sat, Dec 07, 2024</p>
-                                  <p className="booking-status cancelled">Cancelled</p>
-                              </div>
-                            </div>
-                          </div>
-                        </>
-                      )}
+                  {/* Sorting Buttons */}
+                  <div className="sort-buttons">
+                    <button className="sort-toggle" onClick={toggleSortOrder}>
+                        {sortOrder === 'asc' ? '↑' : '↓'}
+                      </button>
+                  </div>
                     </div>
+                      <div className="bookingsBodyDiv">
+                        {activeTab === "bookings" && filterBookings('Pending').map(renderBookingItem)}
+                        {activeTab === "bookings" && filterBookings('Completed').map(renderBookingItem)}
+                        {activeTab === "cancelled" && filterBookings('Cancelled').map(renderBookingItem)}
+                      </div>
                   </div>
                 )
               ) : (

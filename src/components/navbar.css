@@ -190,97 +190,6 @@
     border-top: none;
 }
 
-  .edit-profile {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: 40px;
-    right: 0;
-    background-color: white;
-    background-image: url('../assets/userDropdownBG1.png'); 
-    background-size: contain; 
-    background-position: top;
-    background-repeat: no-repeat; 
-    border-radius: 12px;
-    width: 300px;
-    height: 400px;
-    z-index: 1000;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-}
-
-  .edit-header {
-    display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center the header text initially */
-    position: relative; /* Allow the back button to be positioned absolutely */
-    width: 100%; /* Make the header span the full width of the container */
-    margin: 25px;
-}
-
-  .edit-header .back-button {
-    position: absolute; /* Anchor the button */
-    left: 25px; /* Place it on the left side */
-    color: #ffffff;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-  .edit-header h2 {
-    font-weight: medium;
-    font-size: 18px;
-    color: white;
-    margin: 0; /* Remove default margin for proper centering */
-}
-
-  .edit-form label {
-    display: block; /* Ensures the label is above the input */
-    margin: 10px 0 5px; /* Adds proper spacing between the label and input */
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
-    margin-top: 15px;
-}
-
-  .edit-form label:first-of-type {
-    color: white; /* Make the 'Name' label white */
-}
-
-  .edit-form {
-    margin-top: -30px;
-    margin-left: 25px;
-}
-
-  .edit-form input {
-    width: 85%;
-    height: 20px;
-    padding: 8px;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-}
-
-  .save-btn {
-    background-color: #c79b45;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 32px;
-    cursor: pointer;
-    width: 91%;
-    margin-top: 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);   
-}
-
-  .save-btn:hover {
-    background-color: #af8740;
-}
-
   .my-bookings {
     background-color: white;
     background-image: url('../assets/bookingsBG.png'); 
@@ -335,6 +244,38 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+}
+
+/* Sort buttons container */
+.sort-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 5px;
+  margin-top: -30px;
+}
+
+/* Individual sort button styles */
+.sort-buttons button {
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
+  width: 35px; 
+  height: 35px;
+}
+
+/* Hover effect on sort buttons */
+.sort-buttons button:hover {
+  background-color: #c79b45;
+  color: #fff;
 }
 
   .booking-tabs {

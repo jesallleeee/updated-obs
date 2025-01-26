@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import roomImage from '../assets/hotelroom.jpg';
 import './roomTab.css';
 
 const RoomTab = ({ title, price, roomsAvailable, bedCount }) => {
+
   return (
     <div className="room-card-tab">
       <img src={roomImage} alt="Room" className="room-image-tab" />
@@ -15,11 +16,6 @@ const RoomTab = ({ title, price, roomsAvailable, bedCount }) => {
           <span className="rooms-available-tab">{roomsAvailable} rooms available</span> ·{' '}
           <span className="bed-count-tab">{bedCount} bed</span>
         </p>
-        <hr className="divider-tab" />
-        <div className="card-actions-tab">
-          <button className="room-details-tab">Room Details</button>
-          <button className="book-now-tab">Book Now</button>
-        </div>
       </div>
     </div>
   );

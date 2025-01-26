@@ -117,8 +117,8 @@
   }
 
   .booking-card {
-    width: 350px;
-    max-height: 440px;
+    width: 300px;
+    max-height: 400px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -130,8 +130,8 @@
   .room-rate-card{
     display: flex;
     align-items: center;
-    gap: 120px; 
-    margin-top: 8px;
+    gap: 90px; 
+    margin-top: 0px;
   }
   
   .card-content {
@@ -139,15 +139,15 @@
   }
 
   .card-content img {
-    width: 360px;
-    height: 200px;
+    width: 320px;
+    height: 150px;
     object-fit: cover;
     margin-left: -20px;
     margin-top: -20px;
   }
   
   .room-title-card {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: medium;
     font-family: "Poppins", serif;
     font-weight: 500;
@@ -155,7 +155,7 @@
   }
   
   .room-price-card {
-    display: flex;
+    display: flex-end;
     font-size: 14px;
     color: #666;
     margin: 12px 0;
@@ -165,7 +165,7 @@
     font-size: 14px;
     color: #666;
     line-height: 1.5;
-    margin-top: 10px;
+    margin-top: 0px;
   }
   
   .charge-item-card {
@@ -174,6 +174,7 @@
     font-size: 14px;
     color: #666;
     margin-bottom: 10px;
+    margin-top: -5px;
   }
   
   .card hr {
@@ -205,9 +206,17 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     flex: 1;
     max-width: 1000px;
-    height: 400px;
+    height: auto;
     margin-left: 230px;
   }
+
+  .info-container p {
+    color: #999;
+    margin-left: 25px;
+    margin-top: -65px;
+    margin-bottom: 40px;
+  }
+
 
   .summary-container {
     background-color: white;
@@ -224,12 +233,13 @@
     color: #333;
     margin-bottom: 20px;
     margin-left: 25px;
+    margin-bottom: 80px;
   }
 
   .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 35px;
     margin-left: 25px;
   }
   
@@ -383,26 +393,6 @@
     display: block;
     margin-left: 35px;
     margin-top: 10px;
-  }
-
-  .request-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    width: 1000px;
-    height: auto;
-    margin-top: 20px;
-    margin-left: 230px;
-  }
-
-  .request-container h3 {
-    font-size: 22px;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 20px;
-    margin-left: 25px;
   }
   
     .rules-container {

@@ -35,19 +35,29 @@ const SelectRoom = () => {
   const [persons, setPersons] = useState(location.state?.persons || 2);
 
   const [rooms, setRooms] = useState([]);
+  const [filteredRooms, setFilteredRooms] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const [filters, setFilters] = useState({
+    available: true,
+    numPersons: 1,
+    maxPrice: 25000,
+  });
+
+   useEffect(() => {
     setTimeout(() => {
-      setRooms([
+      const roomData = [
         {
           id: 1,
           name: "Standard Room",
           availability: "Only 3 rooms left",
           person: "2 person",
           bed: "1 Queen Bed",
+          size: "20 to 25 sq m",
           description:
             "A cozy and elegant room perfect for solo travelers or couples. Equipped with all essential amenities to ensure a comfortable stay, including a private bathroom, a workspace, and a flat-screen TV.",
+          description2:
+            "Our Standard Room is perfect for travelers seeking comfort and convenience. With a cozy queen-size bed, a functional workspace, and essential amenities, it's ideal for short stays or business trips.",
           price: "4,500",
           image: roomImage1,
           amenities: [
@@ -56,6 +66,17 @@ const SelectRoom = () => {
             { icon: chairIcon, label: "Desk & Chair" },
             { icon: bathroomIcon, label: "Bathroom" },
           ],
+          features: [
+            "Comfortable queen-size bed",
+            "Air conditioning",
+            "32-inch flat-screen TV",
+            "Complimentary Wi-Fi",
+            "Compact work desk",
+            "En-suite bathroom with shower",
+            "Basic toiletries",
+            "Tea and coffee-making",
+            "In-room safe",
+          ],
         },
         {
           id: 2,
@@ -63,8 +84,11 @@ const SelectRoom = () => {
           availability: "5 rooms left",
           person: "3 persons",
           bed: "1 King Bed",
+          size: "30 to 40 sq m",
           description:
             "A spacious room with modern decor, offering a luxurious experience for small families or couples. Includes a private balcony, minibar, and a 50-inch smart TV.",
+          description2:
+             "Upgrade your stay in our Deluxe Room, featuring a king-size bed, a spacious seating area, and modern amenities. With a relaxing bathroom and minibar, it's perfect for both business and leisure travelers.",
           price: "6,500",
           image: roomImage1,
           amenities: [
@@ -73,6 +97,19 @@ const SelectRoom = () => {
             { icon: chairIcon, label: "Desk & Chair" },
             { icon: bathroomIcon, label: "Bathroom" },
           ],
+          features: [
+            "Spacious king-size bed",
+            "Air conditioning",
+            "40-inch Smart TV",
+            "Complimentary high-speed Wi-Fi",
+            "Sofa seating area",
+            "Spacious bathroom with bathtub and shower",
+            "Luxury toiletries",
+            "Bathrobe and slippers",
+            "Minibar with snacks and drinks",
+            "Nespresso coffee machine",
+            "Iron and ironing board",
+          ],
         },
         {
           id: 3,
@@ -80,8 +117,10 @@ const SelectRoom = () => {
           availability: "Only 2 rooms left",
           person: "4 persons",
           bed: "1 King Bed, 1 Sofa Bed",
+          size: "70 to 90 sq m",
           description:
             "A premium suite with separate living and sleeping areas. Ideal for families or business travelers seeking luxury and convenience. Features a kitchenette, work desk, and a stunning city view.",
+          descripion2: "Guests can enjoy premium furnishings, a comfortable sofa bed, and a private balcony with breathtaking cityscape views. The suite offers privacy and style for both relaxation and work.",
           price: "12,000",
           image: roomImage1,
           amenities: [
@@ -90,6 +129,16 @@ const SelectRoom = () => {
             { icon: chairIcon, label: "Desk & Chair" },
             { icon: bathroomIcon, label: "Bathroom" },
           ],
+          features: [
+            "WiFi",
+            "50-inch Smart TV",
+            "Spacious work desk and ergonomic chair",
+            "Luxury en-suite bathroom with bathtub and shower",
+            "Kitchenette with refrigerator and microwave",
+            "Complimentary toiletries",
+            "Room service available",
+            "Private balcony with city view",
+          ],
         },
         {
           id: 4,
@@ -97,8 +146,11 @@ const SelectRoom = () => {
           availability: "7 rooms left",
           person: "5 persons",
           bed: "2 Queen Beds",
+          size: "50 to 60 sq m",
           description:
             "Designed for families, this room provides ample space and comfort. Includes a dining area, kids' play corner, and a flat-screen TV with kids' channels.",
+          descripion2:
+            "Families can unwind in a spacious layout that includes a cozy seating area and child-friendly amenities. The room offers a welcoming and safe environment for both parents and kids.",
           price: "8,000",
           image: roomImage1,
           amenities: [
@@ -107,6 +159,16 @@ const SelectRoom = () => {
             { icon: chairIcon, label: "Desk & Chair" },
             { icon: bathroomIcon, label: "Bathroom" },
           ],
+          features: [
+            "High-speed WiFi",
+            "42-inch flat-screen TV with kids' channels",
+            "Dining area with table for four",
+            "En-suite bathroom with shower",
+            "Complimentary toiletries",
+            "Wardrobe and luggage rack",
+            "Child-friendly amenities",
+            "Tea and coffee-making facilities",
+          ],
         },
         {
           id: 5,
@@ -114,8 +176,11 @@ const SelectRoom = () => {
           availability: "Only 1 room left",
           person: "6 persons",
           bed: "2 King Beds",
+          size: "100 to 120 sq m",
           description:
             "Our most luxurious offering, the penthouse suite boasts breathtaking panoramic views, a private rooftop terrace, and premium amenities for an unforgettable stay.",
+          descripion2:  
+            "This suite is perfect for special occasions, offering a private rooftop retreat with premium furnishings and luxury at every corner. It's the ultimate choice for a truly memorable experience.",
           price: "25,000",
           image: roomImage1,
           amenities: [
@@ -124,6 +189,16 @@ const SelectRoom = () => {
             { icon: chairIcon, label: "Desk & Chair" },
             { icon: bathroomIcon, label: "Bathroom" },
           ],
+          features: [
+            "WiFi",
+            "60-inch Smart TV",
+            "Private rooftop terrace with seating area",
+            "Luxury en-suite bathroom with rain shower and bathtub",
+            "Fully equipped kitchenette",
+            "Complimentary minibar and espresso machine",
+            "Evening turndown service",
+            "Personalized concierge service",
+          ],
         },
         {
           id: 6,
@@ -131,8 +206,10 @@ const SelectRoom = () => {
           availability: "10 rooms left",
           person: "1 person",
           bed: "1 Single Bed",
+          size: "15 to 20 sq m",
           description:
             "Perfect for solo travelers, this compact room offers a comfortable stay with essential amenities, including a desk, wardrobe, and high-speed Wi-Fi.",
+          descripion2: "With a cozy design and practical furnishings, the Single Room is ideal for short stays or business trips. Enjoy a quiet retreat with all the essentials for a productive day.",
           price: "3,000",
           image: roomImage1,
           amenities: [
@@ -141,30 +218,39 @@ const SelectRoom = () => {
             { icon: chairIcon, label: "Desk & Chair" },
             { icon: bathroomIcon, label: "Bathroom" },
           ],
+          features: [
+            "High-speed WiFi",
+            "32-inch flat-screen TV",
+            "Compact work desk and chair",
+            "En-suite bathroom with shower",
+            "Basic toiletries",
+            "Wardrobe",
+            "Tea and coffee-making facilities",
+          ],
         }        
-      ]);
+      ];
+      setRooms(roomData);
+      setFilteredRooms(roomData);
       setLoading(false);
     }, 1000);
   }, []);
 
-  // Function to handle room booking
-  const handleBookClick = (room) => {
+  const handleBookClick = (facilityOrRoom) => {
     navigate("/bookingForm", {
       state: {
         checkIn,
         checkOut,
         persons,
-        room: {
-          id: room.id,
-          name: room.name,
-          price: room.price,
-          bed: room.bed,
-          description: room.description,
-          amenities: room.amenities,
+        roomOrFacility: {
+          id: facilityOrRoom.id,
+          name: facilityOrRoom.name,
+          price: facilityOrRoom.price,
+          description: facilityOrRoom.description,
+          image: facilityOrRoom.image, // Assuming image is passed for visual reference
         },
       },
     });
-  };
+  };  
 
   if (loading) {
     return (
