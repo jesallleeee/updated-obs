@@ -34,6 +34,12 @@ function Home() {
     return `${year}-${month}-${day}`;
   };
 
+  const getOneYearFromNow = () => {
+  const nextYear = new Date();
+  nextYear.setFullYear(nextYear.getFullYear() + 1);
+  return nextYear.toISOString().split("T")[0];
+};
+
   const [checkIn, setCheckIn] = useState(getTodayDate());
   const [checkOut, setCheckOut] = useState(getTomorrowDate(getTodayDate()));
   const [persons, setPersons] = useState(2);
@@ -55,15 +61,15 @@ function Home() {
             <input
               type="date"
               value={checkIn}
-              min={getTodayDate()} // Set minimum date to today
+              min={getTodayDate()}
+              max={getOneYearFromNow()}
               onChange={(e) => {
                 const newCheckIn = e.target.value;
                 setCheckIn(newCheckIn);
-                setCheckOut((prevCheckOut) =>
-                  new Date(newCheckIn) >= new Date(prevCheckOut)
-                    ? getTomorrowDate(newCheckIn)
-                    : prevCheckOut
-                );
+                const newCheckOut = getTomorrowDate(newCheckIn);
+                if (new Date(newCheckOut) > new Date(checkOut)) {
+                  setCheckOut(newCheckOut); // Adjust check-out date if necessary
+                };
               }}
             />
           </div>
@@ -75,7 +81,8 @@ function Home() {
             <input
               type="date"
               value={checkOut}
-              min={getTomorrowDate(checkIn)} // Ensure check-out date is at least one day after the check-in date
+              min={getTomorrowDate(checkIn)}
+              max={getOneYearFromNow()}
               onChange={(e) => setCheckOut(e.target.value)}
             />
           </div>
@@ -88,7 +95,7 @@ function Home() {
               type="number"
               value={persons}
               min="1"
-              max="8"
+              max="6"
               onChange={(e) => setPersons(e.target.value)}
             />
           </div>

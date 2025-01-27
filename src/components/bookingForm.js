@@ -39,8 +39,8 @@ const BookingForm = () => {
   const [checkOut, setCheckOut] = useState(location.state?.checkOut || getTomorrowDate(getTodayDate()));
   const [persons, setPersons] = useState(location.state?.persons || 2);
   const [paymentMethod, setPaymentMethod] = useState("visa");
-  const [isModalVisible, setModalVisible] = useState(true);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isModalVisible, setModalVisible] = useState(!isLoggedIn); 
   const { name, price, image, details } = location.state || {};
   const { roomOrFacility } = location.state || {};
 
@@ -76,8 +76,18 @@ const BookingForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    // Check if the user is logged in
+    if (!isLoggedIn) {
+      alert("Please log in to proceed with your booking.");
+      setModalVisible(true);
+      return;
+    }
+  
+    // Destructure guest information fields
     const { firstName, lastName, phone, email, address, city, zipCode } = guestInfo;
-
+  
+    // Validate guest information fields
     if (!firstName || !lastName || !phone || !email || !address || !city || !zipCode) {
       alert("All fields marked with * are required.");
       return;
@@ -117,10 +127,21 @@ const BookingForm = () => {
   return (
     <div>
       <Navbar />
-      <LogInModal isVisible={isModalVisible} onClose={closeModal}>
-        <h2>Welcome to Our Booking Page!</h2>
-        <p>Please fill out the required fields to complete your booking.</p>
-      </LogInModal>
+      {!isLoggedIn && (
+        <LogInModal isVisible={isModalVisible} onClose={closeModal}>
+          <h2>Welcome to Our Booking Page!</h2>
+          <p>Please log in to continue your booking.</p>
+          <button
+            className="login-button"
+            onClick={() => {
+              setIsLoggedIn(true);
+              setModalVisible(false);
+            }}
+          >
+            Log In
+          </button>
+        </LogInModal>
+      )}
       <div className="bookingForm-container">
         <div className="bf-bg">
           <div className="details-container-form">

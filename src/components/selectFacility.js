@@ -63,6 +63,24 @@ const SelectFacility = () => {
           price: "600",
           image: SpaImage,
         },
+        {
+          id: 4,
+          name: "Conference Room",
+          availability: "8:00AM - 5:00PM",
+          description:
+            "Sit and relax in our spa",
+          price: "600",
+          image: SpaImage,
+        },
+        {
+          id: 5,
+          name: "Unli Buffet",
+          availability: "8:00AM - 6:00PM",
+          description:
+            "Sit and relax in our spa",
+          price: "600",
+          image: SpaImage,
+        },
       ]);
       setLoading(false);
     }, 1000);

@@ -13,7 +13,7 @@
   background-image: url('../assets/Hbg.jpeg');
   background-size: cover; 
   background-position: center; 
-  background-repeat: no-repeat;     
+  background-repeat: no-repeat;
   opacity: 0.9;
   display: flex;
   justify-content: center;
@@ -101,12 +101,39 @@
   overflow-y: auto;
 }
 
+.select-room-header {
+  display: flex;
+  justify-content: space-between;  /* Align items on opposite sides */
+  align-items: center;
+  margin-bottom: 20px;  /* Add some space below the header */
+}
+
 .select-text {
   font-family: "Raleway", sans-serif;
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 35px;
   color: #b89445;
-  margin: 30px 0;
-  text-align: center;
-  margin-right: 1100px;
+  margin-left: 270px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  margin-right: 270px;
+}
+
+.sort-controls label {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.sort-controls select {
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  margin-top: -8px;
+  height: 35px;
+  width: 110px;
 }

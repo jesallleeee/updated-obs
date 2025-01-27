@@ -33,7 +33,10 @@ const Facilities = () => {
 
       <div id="facilities-details" className="facilities-details-section">
         <h2>Indulge in our Premium Facilities</h2>
-        <p>Interested in our facilities? <span className="book-here-link" onClick={handleBookHereClick}>Book here</span></p>
+        <p>Interested in our facilities?</p>
+        <button className="book-here-link" onClick={handleBookHereClick}>
+          Book here
+        </button>
         <div className="facilities-grid">
         <div className="facility-item">
           <div className="facility-image">

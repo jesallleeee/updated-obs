@@ -95,6 +95,16 @@ function Navbar() {
     { id: 7, roomType: 'Deluxe Room', startDate: 'Fri, Dec 18, 2024', endDate: 'Sat, Dec 19, 2024', status: 'Completed', image: bookingsImage1 },
   ];
 
+  const facilities = [
+    { id: 1, facilityType: 'Gym', startDate: 'Fri, Dec 06, 2024', endDate: 'Sat, Dec 07, 2024', status: 'Pending', image: bookingsImage1 },
+    { id: 2, facilityType: 'Spa', startDate: 'Fri, Dec 08, 2024', endDate: 'Sat, Dec 09, 2024', status: 'Completed', image: bookingsImage1 },
+    { id: 3, facilityType: 'Pool', startDate: 'Fri, Dec 10, 2024', endDate: 'Sat, Dec 11, 2024', status: 'Completed', image: bookingsImage1 },
+    { id: 4, facilityType: 'Conference Room', startDate: 'Fri, Dec 12, 2024', endDate: 'Sat, Dec 13, 2024',status: 'Cancelled', image: bookingsImage1 },
+    { id: 5, facilityType: 'Pool', startDate: 'Fri, Dec 14, 2024', endDate: 'Sat, Dec 15, 2024', status: 'Cancelled', image: bookingsImage1 },
+    { id: 6, facilityType: 'Spa', startDate: 'Fri, Dec 16, 2024', endDate: 'Sat, Dec 17, 2024', status: 'Cancelled', image: bookingsImage1 },
+    { id: 7, facilityType: 'Gym', startDate: 'Fri, Dec 18, 2024', endDate: 'Sat, Dec 18, 2024', status: 'Completed', image: bookingsImage1 },
+];
+
    // Sorting function
    const sortBookings = (bookings) => {
     return bookings.sort((a, b) => {
@@ -105,7 +115,10 @@ function Navbar() {
   };
 
   // Filter bookings by status and sort them
-  const filterBookings = (status) => {
+  const filterBookings = (status, type) => {
+    if (type === 'facility') {
+      return sortBookings(facilities.filter(facility => facility.status === status));
+    }
     return sortBookings(bookings.filter(booking => booking.status === status));
   };
 
@@ -121,6 +134,23 @@ function Navbar() {
       </div>
     </div>
   );
+
+  const renderFacilityItem = (facility) => {
+    return (
+      <div className="booking-item-nav-faci" key={facility.id}>
+        <img src={facility.image} alt={facility.facilityType} className="booking-image-faci" />
+        <div className="booking-info-faci">
+          <h3>{facility.facilityType}</h3>
+          <div className="booking-info-details-faci">
+          <p>{`${facility.startDate} - ${facility.endDate}`}</p>
+          <p className={`facility-status ${facility.status.toLowerCase()}`}>
+            {facility.status}
+          </p>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   const toggleSortOrder = () => {
     setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc')); // Toggle between 'asc' and 'desc'
@@ -168,66 +198,104 @@ function Navbar() {
         <button className="book-btn" onClick={() => navigate('/selectRoom')}>Book now</button>
         <div className={`user-menu ${userMenuClass}`} ref={dropdownRef}>
           <FaUserCircle className="user-icon" size={30} onClick={toggleDropdown} />
-            {isDropdownOpen && (
-              isLoggedIn ? (
-                dropdownView === 'menu' ? (
-                  <div className="dropdown-menu">
-                    <p className="dropdown-header">Limuel Alcovendas</p>
-                    <div className="dropdown-item" onClick={() => handleOptionClick('/bookings')}>
-                      <img src={bookingsIconImg} alt="My Bookings" className="dropdown-icon" />
-                      <span>Bookings</span>
-                    </div>
-                    <div className="dropdown-item" onClick={handleLogout}>
-                      <img src={logoutIconImg} alt="Log out" className="dropdown-icon" />
-                      <span>Log out</span>
-                    </div>
+          {isDropdownOpen && (
+            isLoggedIn ? (
+              dropdownView === 'menu' ? (
+                <div className="dropdown-menu">
+                  <p className="dropdown-header">Limuel Alcovendas</p>
+                  <div className="dropdown-item" onClick={() => handleOptionClick('/bookings')}>
+                    <img src={bookingsIconImg} alt="My Bookings" className="dropdown-icon" />
+                    <span>Booked Rooms</span>
                   </div>
-                ) : dropdownView === 'editProfile' ? (
-                  <div className="edit-profile">
-                    <div className="edit-header">
-                      <button className="back-button" onClick={() => setDropdownView('menu')}>←</button>
-                      <h2>Edit Profile</h2>
-                    </div>
+                  <div className="dropdown-item" onClick={() => setDropdownView('facilities')}>
+                    <img src={bookingsIconImg} alt="Booked Facilities" className="dropdown-icon" />
+                    <span>Booked Facilities</span>
                   </div>
-                ) : (
-                  <div className="my-bookings">
-                    <div className="bookingsHeaderDiv">
-                      <div className="my-bookings-header">
-                        <button className="back-button" onClick={() => setDropdownView("menu")}>
-                          ←
-                        </button>
-                        <h2>My Bookings</h2>
-                      </div>
+                  <div className="dropdown-item" onClick={handleLogout}>
+                    <img src={logoutIconImg} alt="Log out" className="dropdown-icon" />
+                    <span>Log out</span>
+                  </div>
+                </div>
+              ) : dropdownView === 'facilities' ? (
+                <div className="my-bookings-faci">
+                  <div className="bookingsHeaderDiv-faci">
+                    <div className="my-bookings-header-faci">
+                      <button className="back-button" onClick={() => setDropdownView("menu")}>
+                        ←
+                      </button>
+                      <h2>My Booked Facilities</h2>
+                    </div>
 
-                      <div className="booking-tabs">
-                        <button
-                          className={`booking-tab ${activeTab === "bookings" ? "active" : ""}`}
-                          onClick={() => setActiveTab("bookings")}
-                        >
-                          Bookings
-                        </button>
-                        <button
-                          className={`booking-tab ${activeTab === "cancelled" ? "active" : ""}`}
-                          onClick={() => setActiveTab("cancelled")}
-                        >
-                          Cancelled
-                        </button>
-                      </div>
-                  {/* Sorting Buttons */}
-                  <div className="sort-buttons">
-                    <button className="sort-toggle" onClick={toggleSortOrder}>
+                    <div className="booking-tabs-faci">
+                      <button
+                        className={`booking-tab-faci ${activeTab === "bookings" ? "active" : ""}`}
+                        onClick={() => setActiveTab("bookings")}
+                      >
+                        Bookings
+                      </button>
+                      <button
+                        className={`booking-tab-faci ${activeTab === "cancelled" ? "active" : ""}`}
+                        onClick={() => setActiveTab("cancelled")}
+                      >
+                        Cancelled
+                      </button>
+                    </div>
+
+                    {/* Sorting Buttons */}
+                    <div className="sort-buttons-faci">
+                      <button className="sort-toggle" onClick={toggleSortOrder}>
                         {sortOrder === 'asc' ? '↑' : '↓'}
                       </button>
-                  </div>
                     </div>
-                      <div className="bookingsBodyDiv">
-                        {activeTab === "bookings" && filterBookings('Pending').map(renderBookingItem)}
-                        {activeTab === "bookings" && filterBookings('Completed').map(renderBookingItem)}
-                        {activeTab === "cancelled" && filterBookings('Cancelled').map(renderBookingItem)}
-                      </div>
                   </div>
-                )
+
+                  <div className="bookingsBodyDiv-faci">
+                  {activeTab === "bookings" && filterBookings('Pending', 'facility').map(renderFacilityItem)}
+                  {activeTab === "bookings" && filterBookings('Completed', 'facility').map(renderFacilityItem)}
+                  {activeTab === "cancelled" && filterBookings('Cancelled', 'facility').map(renderFacilityItem)}
+                  </div>
+                </div>
               ) : (
+                <div className="my-bookings">
+                  <div className="bookingsHeaderDiv">
+                    <div className="my-bookings-header">
+                      <button className="back-button" onClick={() => setDropdownView("menu")}>
+                        ←
+                      </button>
+                      <h2>My Bookings</h2>
+                    </div>
+
+                    <div className="booking-tabs">
+                      <button
+                        className={`booking-tab ${activeTab === "bookings" ? "active" : ""}`}
+                        onClick={() => setActiveTab("bookings")}
+                      >
+                        Bookings
+                      </button>
+                      <button
+                        className={`booking-tab ${activeTab === "cancelled" ? "active" : ""}`}
+                        onClick={() => setActiveTab("cancelled")}
+                      >
+                        Cancelled
+                      </button>
+                    </div>
+
+                    {/* Sorting Buttons */}
+                    <div className="sort-buttons">
+                      <button className="sort-toggle" onClick={toggleSortOrder}>
+                        {sortOrder === 'asc' ? '↑' : '↓'}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="bookingsBodyDiv">
+                    {activeTab === "bookings" && filterBookings('Pending').map(renderBookingItem)}
+                    {activeTab === "bookings" && filterBookings('Completed').map(renderBookingItem)}
+                    {activeTab === "cancelled" && filterBookings('Cancelled').map(renderBookingItem)}
+                  </div>
+                </div>
+              )
+            ) : (
               <div className="dropdown-menu">
                 <p className="dropdown-header">Guest</p>
                 <div

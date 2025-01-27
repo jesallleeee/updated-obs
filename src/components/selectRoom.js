@@ -35,18 +35,13 @@ const SelectRoom = () => {
   const [persons, setPersons] = useState(location.state?.persons || 2);
 
   const [rooms, setRooms] = useState([]);
-  const [filteredRooms, setFilteredRooms] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [filters, setFilters] = useState({
-    available: true,
-    numPersons: 1,
-    maxPrice: 25000,
-  });
+  const [sortOption, setSortOption] = useState("availability");
 
-   useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
-      const roomData = [
+      setRooms([
         {
           id: 1,
           name: "Standard Room",
@@ -227,13 +222,38 @@ const SelectRoom = () => {
             "Wardrobe",
             "Tea and coffee-making facilities",
           ],
-        }        
-      ];
-      setRooms(roomData);
-      setFilteredRooms(roomData);
+        } 
+      ]);
       setLoading(false);
     }, 1000);
   }, []);
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
+
+  const sortRooms = (rooms, sortOption) => {
+    switch (sortOption) {
+      case "availability":
+        return rooms.sort((a, b) => {
+          const availabilityA = parseInt(a.availability.split(" ")[0]);
+          const availabilityB = parseInt(b.availability.split(" ")[0]);
+          return availabilityA - availabilityB;
+        });
+      case "persons":
+        return rooms.sort((a, b) => {
+          const personsA = parseInt(a.person.split(" ")[0]);
+          const personsB = parseInt(b.person.split(" ")[0]);
+          return personsA - personsB;
+        });
+      case "price":
+        return rooms.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+      default:
+        return rooms;
+    }
+  };
+
+  const sortedRooms = sortRooms([...rooms], sortOption);
 
   const handleBookClick = (facilityOrRoom) => {
     navigate("/bookingForm", {
@@ -246,7 +266,7 @@ const SelectRoom = () => {
           name: facilityOrRoom.name,
           price: facilityOrRoom.price,
           description: facilityOrRoom.description,
-          image: facilityOrRoom.image, // Assuming image is passed for visual reference
+          image: facilityOrRoom.image,
         },
       },
     });
@@ -317,8 +337,18 @@ const SelectRoom = () => {
         </div>
 
         <div className="book-room-select">
-          <div className="select-text">Select a Room</div>
-          {rooms.map((room) => (
+          <div className="select-room-header">
+            <div className="select-text">Select a Room</div>
+            <div className="sort-controls">
+              <label>Sort by: </label>
+              <select onChange={handleSortChange} value={sortOption}>
+                <option value="availability">Availability</option>
+                <option value="persons">Persons</option>
+                <option value="price">Price</option>
+              </select>
+            </div>
+          </div>
+          {sortedRooms.map((room) => (
             <RoomCard
               key={room.id}
               room={room}
